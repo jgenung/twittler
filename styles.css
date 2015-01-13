@@ -1,4 +1,40 @@
-body{
+.all
+{
+	font-family: Helvetica;
+	font-weight: normal;
+	color: white;
+}
+
+.shawndrost
+{
+	font-family: Helvetica;
+	font-weight: normal;
+	color: white;
+}
+
+.sharksforcheap
+{
+	font-family: Helvetica;
+	font-weight: normal;
+	color:white;
+}
+
+.mracus
+{
+	font-family: Helvetica;
+	font-weight: normal;
+	color: white;
+}
+
+.douglascalhoun
+{
+	font-family: Helvetica;
+	font-weight: normal;
+	color: white;
+}
+
+body
+{
     margin:0;
     padding:0;
     width:100%;

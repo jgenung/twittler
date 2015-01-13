@@ -40,7 +40,7 @@
     <div id="tweets">
      <h1>Twittle Me This!</h1>
        <ul>
-         <li class="all tweets" data-username="all">
+         <li class="all user" data-username="all">
            <h2>New Tweets <button class="show">View Tweets</button></h2>
          </li>
        </ul>
@@ -51,7 +51,9 @@
       $(document).ready(function(){
 	
 	// Display specific user tweet on click
-	$("button").on("click",  function(){
+	$("button").on("click",  function(event){
+		event.stopPropagation();
+		event.preventDefault();
 		var $this = $(this);
 		var me = this;
 		var name = $(me).closest('li').data("username");
@@ -101,7 +103,7 @@
 						var $tweet = $('<br><span class=' + '"' + name + '"' + '></span>');
 					//}
 
-					$tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+					$tweet.text(tweet.message + ': ' + tweet.created_at);
 					$tweet.appendTo($(this).closest(".user"));
 					tweets-=1;
 				}
@@ -118,6 +120,8 @@
 		{
 			$this.text("Show Tweets");
 			$('span.' + name).hide();
+			//$('span.' + name).css({'display': 'block', 'visibility': 'collapse'});
+			//$('span.' + name).css({'opacity': '0', 'color': 'transparent'});
 		}
 	});
 	
