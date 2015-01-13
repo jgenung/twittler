@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+   <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <title>myTwittler</title>
@@ -12,7 +12,7 @@
         <ul>
           <li class="shawndrost user" data-username="shawndrost">
             <h2>Shawndrost</h2>
-            <button class="show">View Tweets</button>
+	    <button class="show">View Tweets</button>
             <ul class="tweets">
 	    </ul>
 	  </li>
@@ -37,12 +37,15 @@
 	</ul>
     </div>
    
-    <div id="tweets">
+    <div id="all_users">
      <h1>Twittle Me This!</h1>
        <ul>
          <li class="all user" data-username="all">
-           <h2>New Tweets <button class="show">View Tweets</button></h2>
-         </li>
+           <h2>New Tweets</h2> 
+	   <button class="show">View Tweets</button>
+           <ul class="tweets">
+	   </ul>
+	 </li>
        </ul>
     </div>
 
@@ -68,19 +71,9 @@
 				while(index >= 0)
 				{
 					var tweet = streams.home[index];
-					if(index == streams.home.length - 1)
-					{
-						var $tweet = $('<span class=' + '"' + name + '"' + '></span>');
-					}
-
-					else
-					{
-						var $tweet = $('<br><span class=' + '"' + name + '"' + '></span>');
-					}
-				
+					var $tweet = $('<br><li><span class=' + '"' + name + '"' + '></span></li>');
 					$tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-					$tweet.appendTo($(me).closest('li'));
-					
+					$tweet.appendTo($(me).closest('li').find('ul'));
 					index -= 1;
 				}
 			}
@@ -92,19 +85,9 @@
 				while(tweets >= 0)
 				{
 					var tweet = streams.users[name][tweets];
-				
-					/*if(tweets === 0)
-					{
-						var $tweet = $('<span class=' + '"' + name + '"' + '></span>');
-					}
-
-					else*/
-					//{
-						var $tweet = $('<br><span class=' + '"' + name + '"' + '></span>');
-					//}
-
+					var $tweet = $('<br><li><span class=' + '"' + name + '"' + '></span></li>');
 					$tweet.text(tweet.message + ': ' + tweet.created_at);
-					$tweet.appendTo($(this).closest(".user"));
+					$tweet.appendTo($(me).closest('li').find('ul'));
 					tweets-=1;
 				}
 			}
@@ -113,13 +96,13 @@
 		else if($this.text() === "Show Tweets")
 		{
 			$this.text("Hide Tweets");
-			$('span.' + name).show().slideDown();
+			$(this).closest('li').find('ul').slideToggle();
 		}
 
 		else
 		{
 			$this.text("Show Tweets");
-			$('span.' + name).hide();
+			$(this).closest('li').find('ul').slideToggle();
 			//$('span.' + name).css({'display': 'block', 'visibility': 'collapse'});
 			//$('span.' + name).css({'opacity': '0', 'color': 'transparent'});
 		}
@@ -131,8 +114,7 @@
 
 	$(".user").on("mouseleave", function(){
 		$(this).css({"background-color": "#343b42", "font-weight": "bold"});
-	});
-	
+	});	
      });
     </script>
   </body>

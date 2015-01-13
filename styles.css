@@ -61,18 +61,20 @@ h2
 	transition: background 0.2s 0,2s ease-in-out;
 }
 
-ul
+ul 
 {
 	float:left;
 	width:95%;
 	display:inline;
-	list-style:none;
+	margin: 1%;
 }
 
-ul li
+#users .user, #all_users .user
 {
 	float:left;
-	width:20%;
-	margin:1%;
+	width:50%;
+	margin: 1%;
+	display:inline;
+	list-style:none;
 	background:#343b42; 
 }
