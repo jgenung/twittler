@@ -1,0 +1,42 @@
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    font-size:11px;
+    background-image: url(http://d3n3e0roqdrhcc.cloudfront.net/assets/bg-body-4e4ca3f3d3689138772ce3ffbadcd1fe.jpg);
+}
+
+h1
+{
+	transition: background 0.2s 0,2s ease-in-out;
+	color: white;
+	text-align: left;
+	font-size:2.222222em;
+	line-height: 1.2em;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+
+h2
+{
+	font-family: Helvetica;
+	font-weight: bold;
+	color: white;
+	transition: background 0.2s 0,2s ease-in-out;
+}
+
+ul
+{
+	float:left;
+	width:95%;
+	display:inline;
+	list-style:none;
+}
+
+ul li
+{
+	float:left;
+	width:20%;
+	margin:1%;
+	background:#343b42; 
+}

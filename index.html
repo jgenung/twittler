@@ -1,27 +1,135 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <title>myTwittler</title>
   </head>
   <body>
+    <div id="users">
+      <h1>Twittler Users</h1>
+        <ul>
+          <li class="shawndrost user" data-username="shawndrost">
+            <h2>Shawndrost</h2>
+            <button class="show">View Tweets</button>
+            <ul class="tweets">
+	    </ul>
+	  </li>
+          <li class="sharksforcheap user" data-username="sharksforcheap">
+	    <h2>Sharksforcheap</h2>
+	    <button class="show">View Tweets</button>
+            <ul class="tweets">
+            </ul>
+          </li>
+          <li class ="mracus user" data-username="mracus">
+            <h2>Mracus</h2>
+            <button class="show">View Tweets</button>
+            <ul class="tweets">
+            </ul>
+          </li>
+          <li class ="douglascalhoun user" data-username="douglascalhoun">
+            <h2>Douglascalhoun</h2>
+	    <button class="show">View Tweets</button>
+	    <ul class="tweets">
+            </ul>
+          </li>
+	</ul>
+    </div>
+   
+    <div id="tweets">
+     <h1>Twittle Me This!</h1>
+       <ul>
+         <li class="all tweets" data-username="all">
+           <h2>New Tweets <button class="show">View Tweets</button></h2>
+         </li>
+       </ul>
+    </div>
+
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+	
+	// Display specific user tweet on click
+	$("button").on("click",  function(){
+		var $this = $(this);
+		var me = this;
+		var name = $(me).closest('li').data("username");
+	
+		if($this.text() === "View Tweets")
+		{
+			$this.text("Hide Tweets");
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          tweet.appendTo($body);
-          index -= 1;
-        }
+			if(name === "all")
+			{
+				var index = streams.home.length - 1;
+				while(index >= 0)
+				{
+					var tweet = streams.home[index];
+					if(index == streams.home.length - 1)
+					{
+						var $tweet = $('<span class=' + '"' + name + '"' + '></span>');
+					}
 
-      });
+					else
+					{
+						var $tweet = $('<br><span class=' + '"' + name + '"' + '></span>');
+					}
+				
+					$tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+					$tweet.appendTo($(me).closest('li'));
+					
+					index -= 1;
+				}
+			}
+	
+			else
+			{
+				var tweets = streams.users[name].length - 1;
+		
+				while(tweets >= 0)
+				{
+					var tweet = streams.users[name][tweets];
+				
+					/*if(tweets === 0)
+					{
+						var $tweet = $('<span class=' + '"' + name + '"' + '></span>');
+					}
 
+					else*/
+					//{
+						var $tweet = $('<br><span class=' + '"' + name + '"' + '></span>');
+					//}
+
+					$tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
+					$tweet.appendTo($(this).closest(".user"));
+					tweets-=1;
+				}
+			}
+		}
+	
+		else if($this.text() === "Show Tweets")
+		{
+			$this.text("Hide Tweets");
+			$('span.' + name).show().slideDown();
+		}
+
+		else
+		{
+			$this.text("Show Tweets");
+			$('span.' + name).hide();
+		}
+	});
+	
+	$(".user").on("mouseenter", function(){
+		$(this).css({"background-color": "#252b30", "font-weight": "bold"});
+	});
+
+	$(".user").on("mouseleave", function(){
+		$(this).css({"background-color": "#343b42", "font-weight": "bold"});
+	});
+	
+     });
     </script>
   </body>
 </html>
